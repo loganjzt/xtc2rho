@@ -109,7 +109,7 @@ int main(int argc, char **argv){
 					for(j=0;j *dx < zs;j++)	integral +=	(rhoZtmp[j]+rhoZtmp[j+1])/2.0*dx;
 					integral += rhoZtmp[j]*(zs-j*dx);
 					indicator1 = integral - zs / box[2][2] + comZ / box[2][2] - 0.50;
-					if( i > 0 && indicator2*indicator1 <= 0 && (zs-box[2][2]/2.0)*(comZ - box[2][2]/2.0) <= 0 && rhoZtmp[int(zs/dx)] < 1.0/double(zbin)/dx ){
+					if( i > 0 && indicator2*indicator1 <= 0 && (zs-box[2][2]/2.0)*(comZ - box[2][2]/2.0) <= 0 && rhoZtmp[int(zs/dx)] < 1.0/double(zbin)/dx && ( zs <= (2.0*comZ - box[2][2]) || zs >= (box[2][2]  - 2.0*comZ)) ){
 						zs = dx/10.0 / (abs(indicator1)+abs(indicator2))*abs(indicator2) + (i-1)*dx/10.0;
 						break;
 					}
